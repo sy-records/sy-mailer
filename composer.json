@@ -1,0 +1,11 @@
+{
+  "autoload": {
+    "psr-4": {
+      "SyMailer\\":"inc/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}

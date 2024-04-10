@@ -1,0 +1,15 @@
+name: Deploy to WordPress.org
+
+on:
+  pull_request:
+  release:
+    types: [ published ]
+
+jobs:
+  deploy:
+    uses: sy-records/.github/.github/workflows/wordpress-plugin-deploy.yaml@main
+    with:
+      build: true
+      working-directory: .
+      php: '7.2'
+    secrets: inherit
