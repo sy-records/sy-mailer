@@ -74,9 +74,9 @@ function sy_mailer_install_table()
 function sy_mailer_setting_page_tabs()
 {
     return [
-        'config' => __('发信配置', 'sy-mailer'),
-        'testing' => __('发信测试', 'sy-mailer'),
-        'logs' => __('发送日志', 'sy-mailer'),
+        'config' => __('Config', 'sy-mailer'),
+        'testing' => __('Testing', 'sy-mailer'),
+        'logs' => __('Logs', 'sy-mailer'),
     ];
 }
 
@@ -176,7 +176,7 @@ function sy_mailer_check_credentials($options = [])
 
     foreach ($keys as $key) {
         if (empty($options[$key])) {
-            echo '<div class="error"><p><strong>' . __('配置错误，请检查后重新保存！') . '</strong></p></div>';
+            echo '<div class="error"><p><strong>' . __('Configuration error, please check and resave!') . '</strong></p></div>';
             return false;
         }
     }
@@ -215,8 +215,8 @@ function sy_mailer_check_credentials($options = [])
             throw new RuntimeException('smtp connect error');
         }
     } catch (Throwable $e) {
-        $title = esc_html__('SMTP连接错误', 'sy-mailer');
-        $content = esc_html__('配置错误，请检查后重新保存！', 'sy-mailer');
+        $title = esc_html__('SMTP connection error', 'sy-mailer');
+        $content = esc_html__('Configuration error, please check and resave!', 'sy-mailer');
         echo <<<HTML
 <div class="error">
   <h3>{$title}</h3>
@@ -232,8 +232,8 @@ function sy_mailer_plugin_action_links($links, $file)
 {
     if ($file == urldecode(SY_MAILER_PLUGIN_PAGE)) {
         $page = SY_MAILER_PLUGIN_SLUG;
-        $links[] = "<a href='admin.php?page={$page}'>" . __('设置', 'sy-mailer') . "</a>";
-        $links[] = "<a href='admin.php?page={$page}-logs'>" . __('日志', 'sy-mailer') . "</a>";
+        $links[] = "<a href='admin.php?page={$page}'>" . __('Settings', 'sy-mailer') . "</a>";
+        $links[] = "<a href='admin.php?page={$page}-logs'>" . __('Logs', 'sy-mailer') . "</a>";
     }
     return $links;
 }
@@ -379,7 +379,7 @@ function sy_mailer_setting_page()
 
         $check = sy_mailer_check_credentials($options);
         if ($check) {
-            echo '<div class="updated"><p><strong>' . __('配置已保存。') . '</strong></p></div>';
+            echo '<div class="updated"><p><strong>' . __('Configuration saved successfully!') . '</strong></p></div>';
         }
     }
 
@@ -401,12 +401,12 @@ function sy_mailer_setting_page()
                 $status = $e->getMessage();
             }
         } else {
-            $status = __('收件地址错误或字段为空，请重新填写！', 'sy-mailer');
+            $status = __('Fields are not filled in or there is an error.', 'sy-mailer');
         }
 
         if (!$status) {
             if ($result === true) {
-                $status = __('邮件已发送！', 'sy-mailer');
+                $status = __('Email sent!', 'sy-mailer');
                 $class = 'updated';
             } else {
                 $status = DB::$phpmailer_error->get_error_message();
@@ -421,7 +421,7 @@ function sy_mailer_setting_page()
 ?>
 <div class="wrap">
 
-  <h1><?php _e('Sy Mailer', 'sy-mailer'); ?><span style="font-size: 13px; padding-left: 10px;"><?php _e('当前版本：', 'sy-mailer'); ?><?php echo SY_MAILER_VERSION; ?></span></h1>
+  <h1><?php _e('Sy Mailer', 'sy-mailer'); ?><span style="font-size: 13px; padding-left: 10px;"><?php _e('Version: ', 'sy-mailer'); ?><?php echo SY_MAILER_VERSION; ?></span></h1>
 
   <h3 class="nav-tab-wrapper">
       <?php foreach (sy_mailer_setting_page_tabs() as $tab => $label): ?>
@@ -437,7 +437,7 @@ function sy_mailer_setting_page()
         <table class="form-table">
           <tr>
             <th scope="row">
-                <?php esc_html_e('发件人地址', 'sy-mailer'); ?>
+                <?php esc_html_e('From', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -448,7 +448,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('发件人昵称', 'sy-mailer'); ?>
+                <?php esc_html_e('From Name', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -459,7 +459,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('选择服务商', 'sy-mailer'); ?>
+                <?php esc_html_e('Service Provider', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -469,7 +469,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('SMTP服务器地址', 'sy-mailer'); ?>
+                <?php esc_html_e('SMTP Host', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -480,7 +480,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('SMTP端口', 'sy-mailer'); ?>
+                <?php esc_html_e('SMTP Port', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -490,7 +490,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('SMTP加密方式', 'sy-mailer'); ?>
+                <?php esc_html_e('SMTP Secure', 'sy-mailer'); ?>
             </th>
             <td>
                 <?php foreach (['' => 'None', 'ssl' => 'SSL', 'tls' => 'TLS'] as $secure => $secureName): ?>
@@ -504,7 +504,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('SMTP认证', 'sy-mailer'); ?>
+                <?php esc_html_e('SMTP Authentication', 'sy-mailer'); ?>
             </th>
             <td>
                 <?php foreach (['no' => 'No', 'yes' => 'Yes'] as $auth => $authName): ?>
@@ -518,7 +518,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('认证用户名', 'sy-mailer'); ?>
+                <?php esc_html_e('Username', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -529,7 +529,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('认证密码', 'sy-mailer'); ?>
+                <?php esc_html_e('Password', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -540,13 +540,13 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('禁用日志', 'sy-mailer'); ?>
+                <?php esc_html_e('Disable Logs', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
                 <input type="checkbox" name="disable_logs" value="yes"
                     <?php checked($smtpOptions['disable_logs'], 'yes'); ?>/>
-                  <?php esc_html_e('禁用发送日志功能', 'sy-mailer'); ?>
+              <?php esc_html_e('Disable the email logging feature', 'sy-mailer'); ?>
               </label>
             </td>
           </tr>
@@ -565,7 +565,7 @@ function sy_mailer_setting_page()
         <table class="form-table">
           <tr>
             <th scope="row">
-                <?php esc_html_e('收件地址', 'sy-mailer'); ?>
+                <?php esc_html_e('To', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -575,7 +575,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('邮件标题', 'sy-mailer'); ?>
+                <?php esc_html_e('Subject', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -585,7 +585,7 @@ function sy_mailer_setting_page()
           </tr>
           <tr>
             <th scope="row">
-                <?php esc_html_e('邮件正文', 'sy-mailer'); ?>
+                <?php esc_html_e('Message', 'sy-mailer'); ?>
             </th>
             <td>
               <label>
@@ -598,7 +598,7 @@ function sy_mailer_setting_page()
         <p class="submit">
           <input type="hidden" name="type" value="sy_mailer_testing"/>
             <?php wp_nonce_field('sy_mailer_testing', 'sy_mailer_testing-nonce'); ?>
-          <input type="submit" class="button-primary" value="<?php esc_attr_e('测试发送', 'sy-mailer'); ?>"/>
+          <input type="submit" class="button-primary" value="<?php esc_attr_e('Send Test', 'sy-mailer'); ?>"/>
         </p>
 
       </form>
@@ -612,21 +612,21 @@ function sy_mailer_setting_page()
       <table id="sy-mailer-log" class="display widefat" style="width:100%">
         <thead>
         <tr>
-          <th>ID</th>
-          <th>To</th>
-          <th>Timestamp</th>
-          <th>Subject</th>
-          <th>Error</th>
+          <th><?php _e('ID', 'sy-mailer'); ?></th>
+          <th><?php _e('To', 'sy-mailer'); ?></th>
+          <th><?php _e('Timestamp', 'sy-mailer'); ?></th>
+          <th><?php _e('Subject', 'sy-mailer'); ?></th>
+          <th><?php _e('Error', 'sy-mailer'); ?></th>
         </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
         <tr>
-          <th>ID</th>
-          <th>To</th>
-          <th>Timestamp</th>
-          <th>Subject</th>
-          <th>Error</th>
+          <th><?php _e('ID', 'sy-mailer'); ?></th>
+          <th><?php _e('To', 'sy-mailer'); ?></th>
+          <th><?php _e('Timestamp', 'sy-mailer'); ?></th>
+          <th><?php _e('Subject', 'sy-mailer'); ?></th>
+          <th><?php _e('Error', 'sy-mailer'); ?></th>
         </tr>
         </tfoot>
       </table>

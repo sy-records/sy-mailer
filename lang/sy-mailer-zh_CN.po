@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sy Mailer\n"
+"POT-Creation-Date: 2024-04-10 19:49+0800\n"
+"PO-Revision-Date: 2024-04-10 19:58+0800\n"
+"Last-Translator: sy-records <lufei@simps.io>\n"
+"Language-Team: sy-records <lufei@simps.io>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: sy-mailer.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: inc/Config.php:15
+msgid "Aliyun"
+msgstr "阿里云"
+
+#: inc/Config.php:20
+msgid "Aliyun Qiye"
+msgstr "阿里云企业邮箱"
+
+#: inc/Config.php:59
+msgid "Gmail"
+msgstr "谷歌邮箱"
+
+#: inc/Config.php:146
+msgid "QQ"
+msgstr "QQ 邮箱"
+
+#: inc/Config.php:151
+msgid "QQex"
+msgstr "腾讯企业邮箱"
+
+#: inc/Config.php:247
+msgid "126"
+msgstr "126 网易免费邮"
+
+#: inc/Config.php:252
+msgid "163"
+msgstr "163 网易免费邮"
+
+#: sy-mailer.php:77
+msgid "Config"
+msgstr "配置"
+
+#: sy-mailer.php:78
+msgid "Testing"
+msgstr "测试"
+
+#: sy-mailer.php:79 sy-mailer.php:236
+msgid "Logs"
+msgstr "发送日志"
+
+#: sy-mailer.php:179 sy-mailer.php:219
+msgid "Configuration error, please check and resave!"
+msgstr "配置错误，请检查并重新保存！"
+
+#: sy-mailer.php:218
+msgid "SMTP connection error"
+msgstr "SMTP 连接错误"
+
+#: sy-mailer.php:235
+msgid "Settings"
+msgstr "设置"
+
+#. Plugin Name of the plugin/theme
+#: sy-mailer.php:246 sy-mailer.php:247 sy-mailer.php:424
+msgid "Sy Mailer"
+msgstr "Sy Mailer"
+
+#: sy-mailer.php:382
+msgid "Configuration saved successfully!"
+msgstr "配置保存成功！"
+
+#: sy-mailer.php:404
+msgid "Fields are not filled in or there is an error."
+msgstr "字段未填写或存在错误。"
+
+#: sy-mailer.php:409
+msgid "Email sent!"
+msgstr "邮件已发送！"
+
+#: sy-mailer.php:424
+msgid "Version: "
+msgstr "版本："
+
+#: sy-mailer.php:440
+msgid "From"
+msgstr "发件人"
+
+#: sy-mailer.php:451
+msgid "From Name"
+msgstr "发件人名称"
+
+#: sy-mailer.php:462
+msgid "Service Provider"
+msgstr "服务商"
+
+#: sy-mailer.php:472
+msgid "SMTP Host"
+msgstr "SMTP 服务器地址"
+
+#: sy-mailer.php:483
+msgid "SMTP Port"
+msgstr "SMTP 端口"
+
+#: sy-mailer.php:493
+msgid "SMTP Secure"
+msgstr "SMTP 加密方式"
+
+#: sy-mailer.php:507
+msgid "SMTP Authentication"
+msgstr "SMTP 认证"
+
+#: sy-mailer.php:521
+msgid "Username"
+msgstr "用户名"
+
+#: sy-mailer.php:532
+msgid "Password"
+msgstr "密码"
+
+#: sy-mailer.php:543
+msgid "Disable Logs"
+msgstr "禁用日志"
+
+#: sy-mailer.php:549
+msgid "Disable the email logging feature"
+msgstr "禁用发送日志功能"
+
+#: sy-mailer.php:558
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: sy-mailer.php:568 sy-mailer.php:616 sy-mailer.php:626
+msgid "To"
+msgstr "收件人"
+
+#: sy-mailer.php:578 sy-mailer.php:618 sy-mailer.php:628
+msgid "Subject"
+msgstr "主题"
+
+#: sy-mailer.php:588
+msgid "Message"
+msgstr "内容"
+
+#: sy-mailer.php:601
+msgid "Send Test"
+msgstr "发送测试"
+
+#: sy-mailer.php:615 sy-mailer.php:625
+msgid "ID"
+msgstr "ID"
+
+#: sy-mailer.php:617 sy-mailer.php:627
+msgid "Timestamp"
+msgstr "发送时间"
+
+#: sy-mailer.php:619 sy-mailer.php:629
+msgid "Error"
+msgstr "错误信息"
+
+#. Description of the plugin/theme
+msgid ""
+"A WordPress email plugin that makes it convenient for users to configure "
+"SMTP settings."
+msgstr "一个方便用户配置 SMTP 设置的 WordPress 邮件插件。"
+
+#. Author of the plugin/theme
+msgid "沈唁"
+msgstr "沈唁"
+
+#. Author URI of the plugin/theme
+msgid "https://qq52o.me"
+msgstr "https://qq52o.me"

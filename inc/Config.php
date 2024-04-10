@@ -12,12 +12,12 @@ class Config
                 'port' => 465,
                 'secure' => true,
             ],
-            'Aliyun' => [
+            __('Aliyun', 'sy-mailer') => [
                 'host' => 'smtp.aliyun.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Aliyun Qiye' => [
+            __('Aliyun Qiye', 'sy-mailer') => [
                 'host' => 'smtp.qiye.aliyun.com',
                 'port' => '465',
                 'secure' => true,
@@ -56,7 +56,7 @@ class Config
                 'host' => 'mail.gandi.net',
                 'port' => 587,
             ],
-            'Gmail' => [
+            __('Gmail', 'sy-mailer') => [
                 'host' => 'smtp.gmail.com',
                 'port' => 465,
                 'secure' => true,
@@ -143,12 +143,12 @@ class Config
                 'host' => 'smtp.postmarkapp.com',
                 'port' => 2525,
             ],
-            'QQ' => [
+            __('QQ', 'sy-mailer') => [
                 'host' => 'smtp.qq.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'QQex' => [
+            __('QQex', 'sy-mailer') => [
                 'host' => 'smtp.exmail.qq.com',
                 'port' => 465,
                 'secure' => true,
@@ -244,12 +244,12 @@ class Config
                 'port' => 465,
                 'secure' => true,
             ],
-            '126' => [
+            __('126', 'sy-mailer') => [
                 'host' => 'smtp.126.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            '163' => [
+            __('163', 'sy-mailer') => [
                 'host' => 'smtp.163.com',
                 'port' => 465,
                 'secure' => true,
