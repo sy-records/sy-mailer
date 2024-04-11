@@ -7,7 +7,7 @@ class Config
     public static function lists()
     {
         return [
-            '1und1' => [
+            __('1und1', 'sy-mailer') => [
                 'host' => 'smtp.1und1.de',
                 'port' => 465,
                 'secure' => true,
@@ -22,37 +22,37 @@ class Config
                 'port' => '465',
                 'secure' => true,
             ],
-            'AOL' => [
+            __('AOL', 'sy-mailer') => [
                 'host' => 'smtp.aol.com',
                 'port' => 587,
             ],
-            'Bluewin' => [
+            __('Bluewin', 'sy-mailer') => [
                 'host' => 'smtpauths.bluewin.ch',
                 'port' => 465,
             ],
-            'DebugMail' => [
+            __('DebugMail', 'sy-mailer') => [
                 'host' => 'debugmail.io',
                 'port' => 25,
             ],
-            'DynectEmail' => [
+            __('DynectEmail', 'sy-mailer') => [
                 'host' => 'smtp.dynect.net',
                 'port' => 25,
             ],
-            'Ethereal' => [
+            __('Ethereal', 'sy-mailer') => [
                 'host' => 'smtp.ethereal.email',
                 'port' => 587,
             ],
-            'FastMail' => [
+            __('FastMail', 'sy-mailer') => [
                 'host' => 'smtp.fastmail.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Forward Email' => [
+            __('Forward Email', 'sy-mailer') => [
                 'host' => 'smtp.forwardemail.net',
                 'port' => 465,
                 'secure' => true,
             ],
-            'GandiMail' => [
+            __('GandiMail', 'sy-mailer') => [
                 'host' => 'mail.gandi.net',
                 'port' => 587,
             ],
@@ -61,85 +61,85 @@ class Config
                 'port' => 465,
                 'secure' => true,
             ],
-            'Godaddy' => [
+            __('Godaddy', 'sy-mailer') => [
                 'host' => 'smtpout.secureserver.net',
                 'port' => 25,
             ],
-            'GodaddyAsia' => [
+            __('GodaddyAsia', 'sy-mailer') => [
                 'host' => 'smtp.asia.secureserver.net',
                 'port' => 25,
             ],
-            'GodaddyEurope' => [
+            __('GodaddyEurope', 'sy-mailer') => [
                 'host' => 'smtp.europe.secureserver.net',
                 'port' => 25,
             ],
-            'Hotmail' => [
+            __('Hotmail', 'sy-mailer') => [
                 'host' => 'smtp-mail.outlook.com',
                 'port' => 587,
             ],
-            'iCloud' => [
+            __('iCloud', 'sy-mailer') => [
                 'host' => 'smtp.mail.me.com',
                 'port' => 587,
             ],
-            'Infomaniak' => [
+            __('Infomaniak', 'sy-mailer') => [
                 'host' => 'mail.infomaniak.com',
                 'port' => 587,
             ],
-            'Mail.ru' => [
+            __('Mail.ru', 'sy-mailer') => [
                 'host' => 'smtp.mail.ru',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Mailcatch.app' => [
+            __('Mailcatch.app', 'sy-mailer') => [
                 'host' => 'sandbox-smtp.mailcatch.app',
                 'port' => 2525,
             ],
-            'Mailgun' => [
+            __('Mailgun', 'sy-mailer') => [
                 'host' => 'smtp.mailgun.org',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Mailjet' => [
+            __('Mailjet', 'sy-mailer') => [
                 'host' => 'in.mailjet.com',
                 'port' => 587,
             ],
-            'Mailosaur' => [
+            __('Mailosaur', 'sy-mailer') => [
                 'host' => 'mailosaur.io',
                 'port' => 25,
             ],
-            'Mailtrap' => [
+            __('Mailtrap', 'sy-mailer') => [
                 'host' => 'smtp.mailtrap.io',
                 'port' => 2525,
             ],
-            'Mandrill' => [
+            __('Mandrill', 'sy-mailer') => [
                 'host' => 'smtp.mandrillapp.com',
                 'port' => 587,
             ],
-            'Naver' => [
+            __('Naver', 'sy-mailer') => [
                 'host' => 'smtp.naver.com',
                 'port' => 587,
             ],
-            'One' => [
+            __('One', 'sy-mailer') => [
                 'host' => 'send.one.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'OpenMailBox' => [
+            __('OpenMailBox', 'sy-mailer') => [
                 'host' => 'smtp.openmailbox.org',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Outlook365' => [
+            __('Outlook365', 'sy-mailer') => [
                 'host' => 'smtp.office365.com',
                 'port' => 587,
                 'secure' => false,
             ],
-            'OhMySMTP' => [
+            __('OhMySMTP', 'sy-mailer') => [
                 'host' => 'smtp.ohmysmtp.com',
                 'port' => 587,
                 'secure' => false,
             ],
-            'Postmark' => [
+            __('Postmark', 'sy-mailer') => [
                 'host' => 'smtp.postmarkapp.com',
                 'port' => 2525,
             ],
@@ -153,93 +153,93 @@ class Config
                 'port' => 465,
                 'secure' => true,
             ],
-            'SendCloud' => [
+            __('SendCloud', 'sy-mailer') => [
                 'host' => 'smtp.sendcloud.net',
                 'port' => 2525,
             ],
-            'SendGrid' => [
+            __('SendGrid', 'sy-mailer') => [
                 'host' => 'smtp.sendgrid.net',
                 'port' => 587,
             ],
-            'SendinBlue' => [
+            __('SendinBlue', 'sy-mailer') => [
                 'host' => 'smtp-relay.brevo.com',
                 'port' => 587,
             ],
-            'SendPulse' => [
+            __('SendPulse', 'sy-mailer') => [
                 'host' => 'smtp-pulse.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES' => [
+            __('SES', 'sy-mailer') => [
                 'host' => 'email-smtp.us-east-1.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-US-EAST-1' => [
+            __('SES-US-EAST-1', 'sy-mailer') => [
                 'host' => 'email-smtp.us-east-1.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-US-WEST-2' => [
+            __('SES-US-WEST-2', 'sy-mailer') => [
                 'host' => 'email-smtp.us-west-2.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-EU-WEST-1' => [
+            __('SES-EU-WEST-1', 'sy-mailer') => [
                 'host' => 'email-smtp.eu-west-1.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-AP-SOUTH-1' => [
+            __('SES-AP-SOUTH-1', 'sy-mailer') => [
                 'host' => 'email-smtp.ap-south-1.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-AP-NORTHEAST-1' => [
+            __('SES-AP-NORTHEAST-1', 'sy-mailer') => [
                 'host' => 'email-smtp.ap-northeast-1.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-AP-NORTHEAST-2' => [
+            __('SES-AP-NORTHEAST-2', 'sy-mailer') => [
                 'host' => 'email-smtp.ap-northeast-2.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-AP-NORTHEAST-3' => [
+            __('SES-AP-NORTHEAST-3', 'sy-mailer') => [
                 'host' => 'email-smtp.ap-northeast-3.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-AP-SOUTHEAST-1' => [
+            __('SES-AP-SOUTHEAST-1', 'sy-mailer') => [
                 'host' => 'email-smtp.ap-southeast-1.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'SES-AP-SOUTHEAST-2' => [
+            __('SES-AP-SOUTHEAST-2', 'sy-mailer') => [
                 'host' => 'email-smtp.ap-southeast-2.amazonaws.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Sparkpost' => [
+            __('Sparkpost', 'sy-mailer') => [
                 'host' => 'smtp.sparkpostmail.com',
                 'port' => 587,
                 'secure' => false,
             ],
-            'Tipimail' => [
+            __('Tipimail', 'sy-mailer') => [
                 'host' => 'smtp.tipimail.com',
                 'port' => 587,
             ],
-            'Yahoo' => [
+            __('Yahoo', 'sy-mailer') => [
                 'host' => 'smtp.mail.yahoo.com',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Yandex' => [
+            __('Yandex', 'sy-mailer') => [
                 'host' => 'smtp.yandex.ru',
                 'port' => 465,
                 'secure' => true,
             ],
-            'Zoho' => [
+            __('Zoho', 'sy-mailer') => [
                 'host' => 'smtp.zoho.com',
                 'port' => 465,
                 'secure' => true,
