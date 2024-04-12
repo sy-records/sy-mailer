@@ -1,7 +1,7 @@
 === Sy Mailer ===
 Contributors: shenyanzhi
 Donate link: https://qq52o.me/sponsor.html
-Tags: smtp,mail,email,logs,mailer,gmail,yahoo,ssl,tls,qq,aliyun,163
+Tags: smtp,mail,email,logs,easy
 License: MIT
 Requires at least: 4.2
 Tested up to: 6.5

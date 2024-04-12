@@ -86,7 +86,7 @@ function sy_mailer_setting_page_tabs()
 function sy_mailer_get_current_tab()
 {
     $tabs = sy_mailer_setting_page_tabs();
-    $parts = explode('-', $_GET['page']);
+    $parts = explode('-', sanitize_text_field($_GET['page']));
     $now = end($parts);
     return !isset($tabs[$now]) ? 'config' : $now;
 }
