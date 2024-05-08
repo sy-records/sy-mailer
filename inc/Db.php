@@ -119,14 +119,11 @@ class Db
 
         if (!empty($prepare_array)) {
             $sql = $this->db->prepare(
-                "SELECT * from {$this->table} WHERE {$where} ORDER BY {$orderby} {$order} LIMIT {$limit_query};",
-                $prepare_array
+                "SELECT * from %i WHERE {$where} ORDER BY {$orderby} {$order} LIMIT {$limit_query};",
+                array_merge([$this->table], $prepare_array)
             );
         } else {
-            $sql = $this->db->prepare(
-                "SELECT * from {$this->table} ORDER BY {$orderby} {$order} LIMIT {$limit_query};",
-                $orderby
-            );
+            $sql = $this->db->prepare("SELECT * from %i ORDER BY {$orderby} {$order} LIMIT {$limit_query};", [$this->table]);
         }
 
         error_log($sql);
@@ -136,7 +133,7 @@ class Db
 
     public function records_count()
     {
-        $sql = $this->db->prepare("SELECT COUNT(*) FROM {$this->table};");
+        $sql = $this->db->prepare("SELECT COUNT(*) FROM %i;", [$this->table]);
         return $this->db->get_var($sql);
     }
 }

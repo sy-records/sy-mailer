@@ -176,7 +176,7 @@ function sy_mailer_check_credentials($options = [])
 
     foreach ($keys as $key) {
         if (empty($options[$key])) {
-            echo esc_html__('<div class="error"><p><strong>' . esc_html__('Configuration error, please check and resave!', 'sy-mailer') . '</strong></p></div>');
+            echo '<div class="error"><p><strong>' . esc_html__('Configuration error, please check and resave!', 'sy-mailer') . '</strong></p></div>';
             return false;
         }
     }
@@ -217,11 +217,11 @@ function sy_mailer_check_credentials($options = [])
     } catch (Throwable $e) {
         $title = esc_html__('SMTP connection error', 'sy-mailer');
         $content = esc_html__('Configuration error, please check and resave!', 'sy-mailer');
-        echo wp_kses("<div class='error'>
+        echo "<div class='error'>
   <h3>{$title}</h3>
   <p>{$content}</p>
   <p>{$e->getMessage()}</p>
-</div>", ['div', 'h3', 'p']);
+</div>";
         return false;
     }
 }
@@ -287,7 +287,7 @@ function sy_mailer_init_host_select()
             });
         });
     </script>";
-    echo wp_kses($html, ['select', 'option', 'script']);
+    echo $html;
 }
 
 add_action('wp_ajax_sy_mailer_get_logs', 'sy_mailer_get_logs');
@@ -423,7 +423,7 @@ function sy_mailer_setting_page()
       <?php foreach (sy_mailer_setting_page_tabs() as $tab => $label): ?>
           <?php $href = SY_MAILER_PLUGIN_SLUG . '-' . $tab; ?>
         <a class="nav-tab <?php echo esc_attr($currentTab == $tab ? 'nav-tab-active' : ''); ?>"
-           href="?page=<?php echo esc_url($href); ?>"><?php echo esc_attr($label); ?></a>
+           href="?page=<?php echo esc_attr($href); ?>"><?php echo esc_attr($label); ?></a>
       <?php endforeach; ?>
   </h3>
 
