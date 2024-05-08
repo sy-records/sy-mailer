@@ -74,9 +74,9 @@ function sy_mailer_install_table()
 function sy_mailer_setting_page_tabs()
 {
     return [
-        'config' => __('Config', 'sy-mailer'),
-        'testing' => __('Testing', 'sy-mailer'),
-        'logs' => __('Logs', 'sy-mailer'),
+        'config' => esc_html__('Config', 'sy-mailer'),
+        'testing' => esc_html__('Testing', 'sy-mailer'),
+        'logs' => esc_html__('Logs', 'sy-mailer'),
     ];
 }
 
@@ -176,7 +176,7 @@ function sy_mailer_check_credentials($options = [])
 
     foreach ($keys as $key) {
         if (empty($options[$key])) {
-            echo '<div class="error"><p><strong>' . __('Configuration error, please check and resave!') . '</strong></p></div>';
+            echo esc_html__('<div class="error"><p><strong>' . esc_html__('Configuration error, please check and resave!', 'sy-mailer') . '</strong></p></div>');
             return false;
         }
     }
@@ -217,13 +217,11 @@ function sy_mailer_check_credentials($options = [])
     } catch (Throwable $e) {
         $title = esc_html__('SMTP connection error', 'sy-mailer');
         $content = esc_html__('Configuration error, please check and resave!', 'sy-mailer');
-        echo <<<HTML
-<div class="error">
+        echo wp_kses("<div class='error'>
   <h3>{$title}</h3>
   <p>{$content}</p>
   <p>{$e->getMessage()}</p>
-</div>
-HTML;
+</div>", ['div', 'h3', 'p']);
         return false;
     }
 }
@@ -232,8 +230,8 @@ function sy_mailer_plugin_action_links($links, $file)
 {
     if ($file == urldecode(SY_MAILER_PLUGIN_PAGE)) {
         $page = SY_MAILER_PLUGIN_SLUG;
-        $links[] = "<a href='admin.php?page={$page}'>" . __('Settings', 'sy-mailer') . "</a>";
-        $links[] = "<a href='admin.php?page={$page}-logs'>" . __('Logs', 'sy-mailer') . "</a>";
+        $links[] = "<a href='admin.php?page={$page}'>" . esc_html__('Settings', 'sy-mailer') . "</a>";
+        $links[] = "<a href='admin.php?page={$page}-logs'>" . esc_html__('Logs', 'sy-mailer') . "</a>";
     }
     return $links;
 }
@@ -243,8 +241,8 @@ add_filter('plugin_action_links', 'sy_mailer_plugin_action_links', 10, 2);
 function sy_mailer_add_setting_page()
 {
     add_menu_page(
-        __('Sy Mailer', 'sy-mailer'),
-        __('Sy Mailer', 'sy-mailer'),
+        esc_html__('Sy Mailer', 'sy-mailer'),
+        esc_html__('Sy Mailer', 'sy-mailer'),
         'manage_options',
         SY_MAILER_PLUGIN_SLUG,
         'sy_mailer_setting_page',
@@ -273,8 +271,7 @@ function sy_mailer_init_host_select()
     }
     $html .= '</select>';
 
-    $html .= <<<HTML
-    <script>
+    $html .= "<script>
         jQuery(document).ready(function($) {
             $('#configSelect').change(function() {
                 var host = $(this).find('option:selected').data('host');
@@ -289,9 +286,8 @@ function sy_mailer_init_host_select()
                 }
             });
         });
-    </script>
-HTML;
-    echo $html;
+    </script>";
+    echo wp_kses($html, ['select', 'option', 'script']);
 }
 
 add_action('wp_ajax_sy_mailer_get_logs', 'sy_mailer_get_logs');
@@ -360,7 +356,7 @@ function sy_mailer_setting_page()
     }
 
     if (!empty($_POST) && $_POST['type'] == 'sy_mailer_config') {
-        if (!wp_verify_nonce(trim($_POST['sy_mailer_config-nonce']), 'sy_mailer_config')) {
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['sy_mailer_config-nonce'])), 'sy_mailer_config')) {
             wp_die('Security check not passed!');
         }
 
@@ -379,12 +375,12 @@ function sy_mailer_setting_page()
 
         $check = sy_mailer_check_credentials($options);
         if ($check) {
-            echo '<div class="updated"><p><strong>' . __('Configuration saved successfully!') . '</strong></p></div>';
+            echo esc_html__('<div class="updated"><p><strong>' . esc_html__('Configuration saved successfully!', 'sy-mailer') . '</strong></p></div>');
         }
     }
 
     if (!empty($_POST) && $_POST['type'] == 'sy_mailer_testing') {
-        if (!wp_verify_nonce(trim($_POST['sy_mailer_testing-nonce']), 'sy_mailer_testing')) {
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['sy_mailer_testing-nonce'])), 'sy_mailer_testing')) {
             wp_die('Security check not passed!');
         }
 
@@ -401,12 +397,12 @@ function sy_mailer_setting_page()
                 $status = $e->getMessage();
             }
         } else {
-            $status = __('Fields are not filled in or there is an error.', 'sy-mailer');
+            $status = esc_html__('Fields are not filled in or there is an error.', 'sy-mailer');
         }
 
         if (!$status) {
             if ($result === true) {
-                $status = __('Email sent!', 'sy-mailer');
+                $status = esc_html__('Email sent!', 'sy-mailer');
                 $class = 'updated';
             } else {
                 $status = DB::$phpmailer_error->get_error_message();
@@ -421,13 +417,13 @@ function sy_mailer_setting_page()
 ?>
 <div class="wrap">
 
-  <h1><?php _e('Sy Mailer', 'sy-mailer'); ?><span style="font-size: 13px; padding-left: 10px;"><?php _e('Version: ', 'sy-mailer'); ?><?php echo SY_MAILER_VERSION; ?></span></h1>
+  <h1><?php esc_html_e('Sy Mailer', 'sy-mailer'); ?><span style="font-size: 13px; padding-left: 10px;"><?php esc_html_e('Version: ', 'sy-mailer'); ?><?php echo SY_MAILER_VERSION; ?></span></h1>
 
   <h3 class="nav-tab-wrapper">
       <?php foreach (sy_mailer_setting_page_tabs() as $tab => $label): ?>
           <?php $href = SY_MAILER_PLUGIN_SLUG . '-' . $tab; ?>
-        <a class="nav-tab <?php echo $currentTab == $tab ? 'nav-tab-active' : '' ?>"
-           href="?page=<?php echo $href; ?>"><?php echo $label; ?></a>
+        <a class="nav-tab <?php echo esc_attr($currentTab == $tab ? 'nav-tab-active' : ''); ?>"
+           href="?page=<?php echo esc_url($href); ?>"><?php echo esc_attr($label); ?></a>
       <?php endforeach; ?>
   </h3>
 
@@ -495,9 +491,9 @@ function sy_mailer_setting_page()
             <td>
                 <?php foreach (['' => 'None', 'ssl' => 'SSL', 'tls' => 'TLS'] as $secure => $secureName): ?>
                   <label>
-                    <input name="smtp_secure" class="secure" type="radio" value="<?php echo $secure; ?>"
-                        <?php checked($smtpOptions['smtp_secure'], $secure); ?> />
-                      <?php echo $secureName; ?>
+                    <input name="smtp_secure" class="secure" type="radio" value="<?php echo esc_attr($secure); ?>"
+                        <?php checked($smtpOptions['smtp_secure'], esc_attr($secure)); ?> />
+                      <?php echo esc_attr($secureName); ?>
                   </label>
                 <?php endforeach; ?>
             </td>
@@ -509,9 +505,9 @@ function sy_mailer_setting_page()
             <td>
                 <?php foreach (['no' => 'No', 'yes' => 'Yes'] as $auth => $authName): ?>
                   <label>
-                    <input name="smtp_auth" type="radio" value="<?php echo $auth; ?>"
-                        <?php checked($smtpOptions['smtp_auth'], $auth); ?> />
-                      <?php echo $authName; ?>
+                    <input name="smtp_auth" type="radio" value="<?php echo esc_attr($auth); ?>"
+                        <?php checked($smtpOptions['smtp_auth'], esc_attr($auth)); ?> />
+                      <?php echo esc_attr($authName); ?>
                   </label>
                 <?php endforeach; ?>
             </td>
@@ -554,8 +550,8 @@ function sy_mailer_setting_page()
 
         <p class="submit">
           <input type="hidden" name="type" value="sy_mailer_config"/>
-            <?php wp_nonce_field('sy_mailer_config', 'sy_mailer_config-nonce'); ?>
-          <input type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>"/>
+          <?php wp_nonce_field('sy_mailer_config', 'sy_mailer_config-nonce'); ?>
+          <input type="submit" class="button-primary" value="<?php esc_html_e('Save Changes', 'sy-mailer'); ?>"/>
         </p>
 
       </form>
@@ -597,8 +593,8 @@ function sy_mailer_setting_page()
 
         <p class="submit">
           <input type="hidden" name="type" value="sy_mailer_testing"/>
-            <?php wp_nonce_field('sy_mailer_testing', 'sy_mailer_testing-nonce'); ?>
-          <input type="submit" class="button-primary" value="<?php esc_attr_e('Send Test', 'sy-mailer'); ?>"/>
+          <?php wp_nonce_field('sy_mailer_testing', 'sy_mailer_testing-nonce'); ?>
+          <input type="submit" class="button-primary" value="<?php esc_html_e('Send Test', 'sy-mailer'); ?>"/>
         </p>
 
       </form>
@@ -608,25 +604,25 @@ function sy_mailer_setting_page()
         .details-control:before {content: '\25B6';padding-right: 5px;}
         .details-control.details:before {content: '\25BC';padding-right: 5px;}
       </style>
-      <div id="md-security" data-security="<?php echo wp_create_nonce('sy_mailer'); ?>"></div>
+      <div id="md-security" data-security="<?php esc_attr_e(wp_create_nonce('sy_mailer')); ?>"></div>
       <table id="sy-mailer-log" class="display widefat" style="width:100%">
         <thead>
         <tr>
-          <th><?php _e('ID', 'sy-mailer'); ?></th>
-          <th><?php _e('To', 'sy-mailer'); ?></th>
-          <th><?php _e('Timestamp', 'sy-mailer'); ?></th>
-          <th><?php _e('Subject', 'sy-mailer'); ?></th>
-          <th><?php _e('Error', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('ID', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('To', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('Timestamp', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('Subject', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('Error', 'sy-mailer'); ?></th>
         </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
         <tr>
-          <th><?php _e('ID', 'sy-mailer'); ?></th>
-          <th><?php _e('To', 'sy-mailer'); ?></th>
-          <th><?php _e('Timestamp', 'sy-mailer'); ?></th>
-          <th><?php _e('Subject', 'sy-mailer'); ?></th>
-          <th><?php _e('Error', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('ID', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('To', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('Timestamp', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('Subject', 'sy-mailer'); ?></th>
+          <th><?php esc_html_e('Error', 'sy-mailer'); ?></th>
         </tr>
         </tfoot>
       </table>

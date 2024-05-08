@@ -79,7 +79,7 @@ class Db
         if (isset($_GET['search']['value']) && !empty($_GET['search']['value'])) {
             $search = sanitize_text_field($_GET['search']['value']);
 
-            foreach ($_GET['columns'] as $key => $col) {
+            foreach ($_GET['columns'] as $col) {
                 if ($col['searchable'] && !empty($col['data']) && $col['data'] !== 'timestamp') {
                     $column = sanitize_text_field(wp_unslash($col['data']));
                     $where_cols[] = "`{$column}` LIKE %s";
@@ -136,6 +136,7 @@ class Db
 
     public function records_count()
     {
-        return $this->db->get_var("SELECT COUNT(*) FROM {$this->table};");
+        $sql = $this->db->prepare("SELECT COUNT(*) FROM {$this->table};");
+        return $this->db->get_var($sql);
     }
 }
