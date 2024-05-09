@@ -73,57 +73,36 @@ class Db
 
     public function get()
     {
-        $where = '';
-        $where_cols = [];
-        $prepare_array = [];
-        if (isset($_GET['search']['value']) && !empty($_GET['search']['value'])) {
+        $columns = ['id', 'to', 'timestamp', 'subject', 'error'];
+        $search = '';
+
+        if (!empty($_GET['search']['value'])) {
             $search = sanitize_text_field($_GET['search']['value']);
-
-            foreach ($_GET['columns'] as $col) {
-                if ($col['searchable'] && !empty($col['data']) && $col['data'] !== 'timestamp') {
-                    $column = sanitize_text_field(wp_unslash($col['data']));
-                    $where_cols[] = "`{$column}` LIKE %s";
-                    $prepare_array[] = '%' . $this->db->esc_like($search) . '%';
-                }
-            }
-
-            if (!empty($where_cols)) {
-                $where = implode(' OR ', $where_cols);
-            }
+            $search = '%' . $this->db->esc_like($search) . '%';
         }
 
-        $limit = [];
-        if (isset($_GET['start'])) {
-            $limit[] = absint($_GET['start']);
-        }
+        $limit = isset($_GET['length']) ? absint($_GET['length']) : 10;
+        $offset = isset($_GET['start']) ? absint($_GET['start']) : 0;
 
-        if (isset($_GET['length'])) {
-            $limit[] = absint($_GET['length']);
-        }
-
-        $limit_query = '';
-        if (!empty($limit)) {
-            $limit_query = implode(',', $limit);
-        }
-
-        $orderby = 'timestamp';
+        $orderBy = 'timestamp';
         $order = 'DESC';
 
         if (!empty($_GET['order'][0])) {
-            $col_num = absint($_GET['order'][0]['column']);
-            $col_name = sanitize_text_field(wp_unslash($_GET['columns'][$col_num]['data']));
-            $order_dir = sanitize_text_field(wp_unslash($_GET['order'][0]['dir']));
-            $orderby = "`{$col_name}`";
-            $order = "{$order_dir}";
+            $colNum = absint($_GET['order'][0]['column']);
+            $orderBy = $columns[$colNum];
+            $order = (!empty($_GET['order'][0]['dir']) && $_GET['order'][0]['dir'] == 'desc') ? 'DESC' : 'ASC';
         }
 
-        if (!empty($prepare_array)) {
+        if (!empty($search)) {
             $sql = $this->db->prepare(
-                "SELECT * from %i WHERE {$where} ORDER BY {$orderby} {$order} LIMIT {$limit_query};",
-                array_merge([$this->table], $prepare_array)
+                "SELECT * FROM %i WHERE `id` = %s OR `to` LIKE %s OR `subject` LIKE %s OR `error` LIKE %s ORDER BY %i {$order} LIMIT %d, %d;",
+                [$this->table, $search, $search, $search, $search, $orderBy, $offset, $limit]
             );
         } else {
-            $sql = $this->db->prepare("SELECT * from %i ORDER BY {$orderby} {$order} LIMIT {$limit_query};", [$this->table]);
+            $sql = $this->db->prepare(
+                "SELECT * FROM %i ORDER BY %i {$order} LIMIT %d, %d;",
+                [$this->table, $orderBy, $offset, $limit]
+            );
         }
 
         error_log($sql);
