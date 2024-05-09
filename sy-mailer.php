@@ -176,7 +176,8 @@ function sy_mailer_check_credentials($options = [])
 
     foreach ($keys as $key) {
         if (empty($options[$key])) {
-            echo '<div class="error"><p><strong>' . esc_html__('Configuration error, please check and resave!', 'sy-mailer') . '</strong></p></div>';
+            $html = '<div class="error"><p><strong>' . esc_html__('Configuration error, please check and resave!', 'sy-mailer') . '</strong></p></div>';
+            echo wp_kses($html, ['div' => ['class' => []], 'p' => [], 'strong' => []]);
             return false;
         }
     }
@@ -217,11 +218,12 @@ function sy_mailer_check_credentials($options = [])
     } catch (Throwable $e) {
         $title = esc_html__('SMTP connection error', 'sy-mailer');
         $content = esc_html__('Configuration error, please check and resave!', 'sy-mailer');
-        echo "<div class='error'>
+        $html = "<div class='error'>
   <h3>{$title}</h3>
   <p>{$content}</p>
   <p>{$e->getMessage()}</p>
 </div>";
+        echo wp_kses($html, ['div' => ['class' => []], 'h3' => [], 'p' => []]);
         return false;
     }
 }
@@ -264,7 +266,7 @@ function sy_mailer_init_host_select()
 {
     $lists = Config::lists();
     $html = '<select id="configSelect">';
-    $html .= "<option value='' data-host='' data-port='' data-secure=''></option>'";
+    $html .= "<option value='' data-host='' data-port='' data-secure=''></option>";
     foreach ($lists as $key => $value) {
         $secure = isset($value['secure']) ? $value['secure'] : '';
         $html .= "<option value='{$key}' data-host='{$value['host']}' data-port='{$value['port']}' data-secure='{$secure}'>{$key}</option>";
@@ -287,7 +289,7 @@ function sy_mailer_init_host_select()
             });
         });
     </script>";
-    echo $html;
+    echo wp_kses($html, ['select' => ['id' => []], 'option' => ['value' => [], 'data-host' => [], 'data-port' => [], 'data-secure' => []], 'script' => []]);
 }
 
 add_action('wp_ajax_sy_mailer_get_logs', 'sy_mailer_get_logs');
@@ -314,7 +316,7 @@ function sy_mailer_enqueue_scripts()
 
 function sy_mailer_get_logs()
 {
-    check_ajax_referer('sy_mailer', 'security');
+    check_ajax_referer('sy_mailer_logs', 'security');
 
     $result = Db::create()->get();
     $records_count = Db::create()->records_count();
@@ -375,7 +377,8 @@ function sy_mailer_setting_page()
 
         $check = sy_mailer_check_credentials($options);
         if ($check) {
-            echo esc_html__('<div class="updated"><p><strong>' . esc_html__('Configuration saved successfully!', 'sy-mailer') . '</strong></p></div>');
+            $html = '<div class="updated"><p><strong>' . esc_html__('Configuration saved successfully!', 'sy-mailer') . '</strong></p></div>';
+            echo wp_kses($html, ['div' => ['class' => []], 'p' => [], 'strong' => []]);
         }
     }
 
@@ -409,7 +412,8 @@ function sy_mailer_setting_page()
             }
         }
 
-        echo '<div class="' . $class . '"><p><strong>' . wp_kses_post($status) . '</strong></p></div>';
+        $html = '<div class="' . $class . '"><p><strong>' . $status . '</strong></p></div>';
+        echo wp_kses($html, ['div' => ['class' => []], 'p' => [], 'strong' => []]);
     }
 
     $smtpOptions = get_option('sy_mailer_options', true);
@@ -417,7 +421,7 @@ function sy_mailer_setting_page()
 ?>
 <div class="wrap">
 
-  <h1><?php esc_html_e('Sy Mailer', 'sy-mailer'); ?><span style="font-size: 13px; padding-left: 10px;"><?php esc_html_e('Version: ', 'sy-mailer'); ?><?php echo SY_MAILER_VERSION; ?></span></h1>
+  <h1><?php esc_html_e('Sy Mailer', 'sy-mailer'); ?><span style="font-size: 13px; padding-left: 10px;"><?php printf(esc_html__('Version: %s', 'sy-mailer'), esc_html(SY_MAILER_VERSION)); ?></span></h1>
 
   <h3 class="nav-tab-wrapper">
       <?php foreach (sy_mailer_setting_page_tabs() as $tab => $label): ?>
@@ -604,7 +608,7 @@ function sy_mailer_setting_page()
         .details-control:before {content: '\25B6';padding-right: 5px;}
         .details-control.details:before {content: '\25BC';padding-right: 5px;}
       </style>
-      <div id="md-security" data-security="<?php esc_attr_e(wp_create_nonce('sy_mailer')); ?>"></div>
+      <div id="md-security" data-security="<?php echo esc_attr(wp_create_nonce('sy_mailer_logs')); ?>"></div>
       <table id="sy-mailer-log" class="display widefat" style="width:100%">
         <thead>
         <tr>
