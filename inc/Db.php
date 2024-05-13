@@ -95,19 +95,23 @@ class Db
 
         if (!empty($search)) {
             $sql = $this->db->prepare(
-                "SELECT * FROM %i WHERE `id` = %s OR `to` LIKE %s OR `subject` LIKE %s OR `error` LIKE %s ORDER BY %i {$order} LIMIT %d, %d;",
-                [$this->table, $search, $search, $search, $search, $orderBy, $offset, $limit]
+                "SELECT * FROM %i WHERE `id` = %s OR `to` LIKE %s OR `subject` LIKE %s OR `error` LIKE %s ORDER BY %i %1s LIMIT %d, %d;",
+                [$this->table, $search, $search, $search, $search, $orderBy, $order, $offset, $limit]
             );
+
+            error_log($sql);
+
+            return $this->db->get_results($sql, ARRAY_A);
         } else {
             $sql = $this->db->prepare(
-                "SELECT * FROM %i ORDER BY %i {$order} LIMIT %d, %d;",
-                [$this->table, $orderBy, $offset, $limit]
+                "SELECT * FROM %i ORDER BY %i %1s LIMIT %d, %d;",
+                [$this->table, $orderBy, $order, $offset, $limit]
             );
+
+            error_log($sql);
+
+            return $this->db->get_results($sql, ARRAY_A);
         }
-
-        error_log($sql);
-
-        return $this->db->get_results($sql, ARRAY_A);
     }
 
     public function records_count()
