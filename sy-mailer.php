@@ -15,9 +15,7 @@ if (!defined('ABSPATH')) {
 define('SY_MAILER_VERSION', '1.0.0');
 define('SY_MAILER_PLUGIN_SLUG', 'sy-mailer');
 define('SY_MAILER_PLUGIN_PAGE', plugin_basename(dirname(__FILE__)) . '%2F' . basename(__FILE__));
-define('SY_MAILER_PATH', plugin_dir_path(__FILE__));
 define('SY_MAILER_URL', plugins_url('/', __FILE__));
-define('SY_MAILER_ASSETS_PATH', SY_MAILER_PATH . 'assets/');
 define('SY_MAILER_ASSETS_URL', SY_MAILER_URL . 'assets/');
 
 require_once 'vendor/autoload.php';
@@ -43,8 +41,6 @@ function sy_mailer_set_options()
 
     sy_mailer_install_table();
 }
-
-load_plugin_textdomain('sy-mailer', false, dirname(plugin_basename(__FILE__)) . '/lang');
 
 function sy_mailer_install_table()
 {
