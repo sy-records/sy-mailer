@@ -4,7 +4,7 @@ Donate link: https://qq52o.me/sponsor.html
 Tags: smtp,mail,email,logs,easy
 License: MIT
 Requires at least: 4.6
-Tested up to: 6.5
+Tested up to: 4.6
 Requires PHP: 7.2
 Stable tag: 1.0.0
 
