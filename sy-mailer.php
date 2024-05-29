@@ -2,7 +2,7 @@
 /*
 Plugin Name: Sy Mailer
 Description: A WordPress email plugin that makes it convenient for users to configure SMTP settings.
-Version: 1.0.0
+Version: 1.0.1
 Author: 沈唁
 Author URI: https://qq52o.me
 License: MIT
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('SY_MAILER_VERSION', '1.0.0');
+define('SY_MAILER_VERSION', '1.0.1');
 define('SY_MAILER_PLUGIN_SLUG', 'sy-mailer');
 define('SY_MAILER_PLUGIN_PAGE', plugin_basename(dirname(__FILE__)) . '%2F' . basename(__FILE__));
 define('SY_MAILER_URL', plugins_url('/', __FILE__));

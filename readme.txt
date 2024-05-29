@@ -3,10 +3,10 @@ Contributors: shenyanzhi
 Donate link: https://qq52o.me/sponsor.html
 Tags: smtp,mail,email,logs,easy
 License: MIT
-Requires at least: 4.6
+Requires at least: 6.2
 Tested up to: 6.5
 Requires PHP: 7.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 Sy Mailer is a WordPress email plugin that makes it convenient for users to configure SMTP settings.
 
@@ -30,7 +30,7 @@ Sy Mailer is a powerful and flexible email plugin for WordPress, designed to sim
 
 = Stable =
 
-- First release.
+- Fix db query error.
 
 = Other =
 
