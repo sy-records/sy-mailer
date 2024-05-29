@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](/compare/v1.0.0...master)
+## [Unreleased](/compare/v1.0.1...master)
+
+## [v1.0.1](/compare/v1.0.0...v1.0.1) - 2024-05-29
+
+- No longer support WordPress 6.2 or smaller.
+
+**Full Changelog**: https://github.com/sy-records/sy-mailer/compare/v1.0.0...v1.0.1
 
 ## [v1.0.0](/compare/...v1.0.0) - 2024-05-13
 
