@@ -73,10 +73,6 @@ class Config
                 'host' => 'smtp.europe.secureserver.net',
                 'port' => 25,
             ],
-            __('Hotmail', 'sy-mailer') => [
-                'host' => 'smtp-mail.outlook.com',
-                'port' => 587,
-            ],
             __('iCloud', 'sy-mailer') => [
                 'host' => 'smtp.mail.me.com',
                 'port' => 587,
