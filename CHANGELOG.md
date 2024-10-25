@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](/compare/v1.0.1...master)
+## [Unreleased](/compare/v1.0.2...master)
+
+## [v1.0.2](/compare/v1.0.1...v1.0.2) - 2024-10-25
+
+* Outlook no longer support Basic Authentication. by [@sy-records](https://github.com/sy-records) in https://github.com/sy-records/sy-mailer/pull/2
 
 ## [v1.0.1](/compare/v1.0.0...v1.0.1) - 2024-05-29
 
